@@ -4,29 +4,29 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="title" content="CALIBRA: Calibration-Aware Multi-Agent Verification for Contactless Physiological Monitoring">
-  <meta name="description" content="CALIBRA is a calibration-aware multi-agent framework for contactless respiratory rate estimation with routing, evidence verification, repair, and calibrated arbitration.">
-  <meta name="keywords" content="CALIBRA, respiratory rate estimation, contactless physiological monitoring, multimodal reasoning, verification, vision-language models, CVPR">
+  <meta name="title" content="Decoupling Perception and Reasoning for Contactless Respiratory Rate with Vision Language and Small Language Models">
+  <meta name="description" content="VLS-RR is a three-stage framework for contactless respiratory rate estimation that decouples visual perception from downstream reasoning using vision-language models and small language models.">
+  <meta name="keywords" content="VLS-RR, respiratory rate estimation, contactless respiratory monitoring, vision language model, small language model, CHASE 2026, healthcare AI">
   <meta name="author" content="Shadman Sakib, Gaurav Shinde, Nirmalya Roy">
   <meta name="robots" content="index, follow">
   <meta name="language" content="English">
 
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="University of Maryland, Baltimore County">
-  <meta property="og:title" content="CALIBRA: Calibration-Aware Multi-Agent Verification for Contactless Physiological Monitoring">
-  <meta property="og:description" content="A calibration-aware multi-agent framework for contactless respiratory rate estimation with routing, evidence verification, repair, and calibrated arbitration.">
-  <meta property="og:url" content="https://sakibshadman.github.io/CALIBRA-project-page/">
-  <meta property="og:image" content="https://sakibshadman.github.io/CALIBRA-project-page/static/images/figure 1.png">
+  <meta property="og:title" content="Decoupling Perception and Reasoning for Contactless Respiratory Rate with Vision Language and Small Language Models">
+  <meta property="og:description" content="A CHASE 2026 paper on contactless respiratory rate estimation using a decoupled perception-and-reasoning framework with VLMs and SLMs.">
+  <meta property="og:url" content="https://YOUR_GITHUB_PAGES_URL/">
+  <meta property="og:image" content="https://YOUR_GITHUB_PAGES_URL/static/images/figure1.png">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="CALIBRA: Calibration-Aware Multi-Agent Verification for Contactless Physiological Monitoring">
-  <meta name="twitter:description" content="A calibration-aware multi-agent framework for contactless respiratory rate estimation with routing, evidence verification, repair, and calibrated arbitration.">
-  <meta name="twitter:image" content="https://sakibshadman.github.io/CALIBRA-project-page/static/images/figure 1.png">
+  <meta name="twitter:title" content="Decoupling Perception and Reasoning for Contactless Respiratory Rate with Vision Language and Small Language Models">
+  <meta name="twitter:description" content="A CHASE 2026 paper on contactless respiratory rate estimation using a decoupled perception-and-reasoning framework with VLMs and SLMs.">
+  <meta name="twitter:image" content="https://YOUR_GITHUB_PAGES_URL/static/images/figure1.png">
 
   <meta name="theme-color" content="#2563eb">
   <meta name="msapplication-TileColor" content="#2563eb">
 
-  <title>CALIBRA</title>
+  <title>VLS-RR | CHASE 2026</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,16 +60,15 @@
       --radius: 18px;
       --dark-table: #1f1f1f;
       --heading-line: #2563eb;
-      --accept-bg: #f5f3ff;
-      --accept-border: #ddd6fe;
-      --accept-pill: #4c1d95;
-      --explain-bg: #eef2ff;
-      --explain-border: #6366f1;
+      --accept-bg: #eef2ff;
+      --accept-border: #c7d2fe;
+      --accept-pill: #3730a3;
+      --explain-bg: #eff6ff;
+      --explain-border: #2563eb;
+      --soft-bg: #f8fbff;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -91,7 +90,7 @@
     }
 
     .hero-logo-row img {
-      height: 68px;
+      height: 64px;
       width: auto;
       object-fit: contain;
       background: #fff;
@@ -99,35 +98,6 @@
       padding: 0.45rem 0.7rem;
       border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
-    }
-
-    .accept-badge-wrap {
-      margin-top: 1rem;
-      display: flex;
-      justify-content: center;
-    }
-
-    .accept-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.7rem;
-      padding: 0.85rem 1.2rem;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--accept-bg), #eff6ff);
-      border: 1px solid var(--accept-border);
-      color: #1f2937;
-      font-weight: 800;
-      box-shadow: 0 10px 25px rgba(76, 29, 149, 0.08);
-    }
-
-    .accept-badge .tag-pill {
-      background: linear-gradient(135deg, var(--accept-pill), #6d28d9);
-      color: #fff;
-      border-radius: 999px;
-      padding: 0.38rem 0.78rem;
-      font-size: 0.84rem;
-      font-weight: 800;
-      letter-spacing: 0.01em;
     }
 
     .publication-authors a {
@@ -143,6 +113,35 @@
     .affiliation-line {
       white-space: nowrap;
       display: inline-block;
+    }
+
+    .accept-badge-wrap {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .accept-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.85rem 1.2rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accept-bg), #ffffff);
+      border: 1px solid var(--accept-border);
+      color: #1f2937;
+      font-weight: 800;
+      box-shadow: 0 10px 25px rgba(55, 48, 163, 0.08);
+    }
+
+    .accept-badge .tag-pill {
+      background: linear-gradient(135deg, var(--accept-pill), #4338ca);
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.38rem 0.78rem;
+      font-size: 0.84rem;
+      font-weight: 800;
+      letter-spacing: 0.01em;
     }
 
     .custom-buttons {
@@ -193,13 +192,23 @@
       line-height: 1.55;
     }
 
-    .info-card {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: #ffffff;
-      padding: 1.25rem;
-      height: 100%;
-      box-shadow: var(--shadow-soft);
+    .section-title-tight {
+      margin-bottom: 0.45rem !important;
+    }
+
+    .title-with-line {
+      position: relative;
+      margin-bottom: 1.15rem !important;
+    }
+
+    .title-with-line::after {
+      content: "";
+      display: block;
+      width: 62px;
+      height: 3px;
+      background: var(--heading-line) !important;
+      border-radius: 999px;
+      margin: 0.65rem auto 0 auto;
     }
 
     .section-figure {
@@ -226,10 +235,13 @@
       color: #555;
       text-align: center;
       line-height: 1.6;
+      max-width: 980px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .compact-p {
-      max-width: 900px;
+      max-width: 940px;
       margin: 0 auto 1rem auto;
       color: var(--muted);
       line-height: 1.82;
@@ -243,23 +255,11 @@
       margin-top: 1rem;
     }
 
-    .section-title-tight {
-      margin-bottom: 0.45rem !important;
-    }
-
-    .title-with-line {
-      position: relative;
-      margin-bottom: 1.15rem !important;
-    }
-
-    .title-with-line::after {
-      content: "";
-      display: block;
-      width: 62px;
-      height: 3px;
-      background: var(--heading-line) !important;
-      border-radius: 999px;
-      margin: 0.65rem auto 0 auto;
+    .abstract-text,
+    .abstract-text p,
+    .section.hero.is-light .content,
+    .section.hero.is-light .content p {
+      color: #000 !important;
     }
 
     .explain-block {
@@ -274,9 +274,17 @@
       font-size: 1.03rem;
     }
 
-    .explain-block strong,
-    .explain-block em {
-      color: #111827;
+    .info-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: #ffffff;
+      padding: 1.25rem;
+      height: 100%;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .info-card h3 {
+      margin-bottom: 0.7rem;
     }
 
     .results-shell {
@@ -289,7 +297,7 @@
     }
 
     .results-topline {
-      max-width: 940px;
+      max-width: 960px;
       margin: 0 auto 1.25rem auto;
       padding: 1.15rem 1.25rem;
       border-left: 5px solid #6366f1;
@@ -330,13 +338,8 @@
       border-color: #1f2937;
     }
 
-    .results-panel {
-      display: none;
-    }
-
-    .results-panel.is-active {
-      display: block;
-    }
+    .results-panel { display: none; }
+    .results-panel.is-active { display: block; }
 
     .results-metric-grid {
       display: grid;
@@ -380,6 +383,7 @@
       overflow: hidden;
       background: #fff;
       box-shadow: var(--shadow-soft);
+      margin-bottom: 1rem;
     }
 
     .table-head {
@@ -409,9 +413,7 @@
       font-weight: 700;
     }
 
-    .table-wrap {
-      overflow-x: auto;
-    }
+    .table-wrap { overflow-x: auto; }
 
     table.results-table {
       width: 100%;
@@ -461,60 +463,30 @@
 
     .best {
       font-weight: 800;
+      color: #1d4ed8;
     }
 
-    .ablation-figure-wrap {
-      max-width: 920px;
-      margin: 0 auto;
-    }
-
-    .ablation-metric-row {
+    .two-figure-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1rem;
-      max-width: 980px;
-      margin: 1.25rem auto 0 auto;
+      align-items: start;
     }
 
-    .ablation-mini-card {
-      background: #fff;
-      border: 1px solid #e5e7eb;
-      border-radius: 16px;
-      padding: 1.1rem 0.9rem;
-      text-align: center;
-      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+    .soft-section {
+      background: linear-gradient(180deg, #fbfdff 0%, #ffffff 100%);
     }
 
-    .ablation-mini-card .value {
-      font-size: 2rem;
-      font-weight: 800;
-      line-height: 1.05;
-      color: #111827;
-    }
-
-    .ablation-mini-card .label {
-      margin-top: 0.42rem;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #111827;
-    }
-
-    .ablation-mini-card .sub {
-      margin-top: 0.2rem;
-      font-size: 0.92rem;
-      color: #4b5563;
-    }
-
-    .qualitative-wrap {
+    .qual-box {
       max-width: 980px;
       margin: 0 auto;
-    }
-
-    .abstract-text,
-    .abstract-text p,
-    .section.hero.is-light .content,
-    .section.hero.is-light .content p {
-      color: #000 !important;
+      padding: 1.15rem 1.25rem;
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: var(--shadow-soft);
+      line-height: 1.8;
+      color: #1f2937;
     }
 
     .bibtex-header {
@@ -546,17 +518,32 @@
       background: #f5f5f5;
     }
 
-    .title.is-3::after,
-    .hero .title.is-3::after,
-    .section .title.is-3::after,
-    h2.title.is-3::after {
-      background: #2563eb !important;
+    .scroll-to-top {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 46px;
+      height: 46px;
+      border: none;
+      border-radius: 999px;
+      background: #111827;
+      color: white;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      z-index: 40;
+    }
+
+    .scroll-to-top:hover {
+      transform: translateY(-1px);
     }
 
     @media (max-width: 1024px) {
-      .results-metric-grid,
-      .ablation-metric-row {
+      .results-metric-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .two-figure-grid {
+        grid-template-columns: 1fr;
       }
 
       .affiliation-line {
@@ -566,25 +553,24 @@
 
     @media (max-width: 768px) {
       .hero-logo-row img {
-        height: 56px;
+        height: 54px;
       }
 
       .results-shell {
         padding: 1rem;
       }
 
-      .results-metric-grid,
-      .ablation-metric-row {
+      .results-metric-grid {
         grid-template-columns: 1fr;
       }
 
-      .results-stat .value,
-      .ablation-mini-card .value {
+      .results-stat .value {
         font-size: 1.8rem;
       }
 
       .results-topline,
-      .explain-block {
+      .explain-block,
+      .qual-box {
         font-size: 1rem;
         padding: 1rem;
       }
@@ -632,6 +618,7 @@
     }
   </script>
 </head>
+
 <body>
 
   <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
@@ -647,12 +634,13 @@
             <div class="column has-text-centered">
 
               <div class="hero-logo-row">
-                <img src="static/images/cvpr.png" alt="CVPR logo" onerror="this.style.display='none'">
-                <img src="static/images/logo_grail.png" alt="GRAIL-V logo" onerror="this.style.display='none'">
+                <!-- Optional logos -->
+                <!-- <img src="static/images/chase.png" alt="CHASE logo" onerror="this.style.display='none'"> -->
+                <!-- <img src="static/images/umbc.png" alt="UMBC logo" onerror="this.style.display='none'"> -->
               </div>
 
               <h1 class="title is-1 publication-title">
-                CALIBRA: Calibration-Aware Multi-Agent Verification for Contactless Physiological Monitoring
+                Decoupling Perception and Reasoning for Contactless Respiratory Rate with Vision Language and Small Language Models
               </h1>
 
               <div class="is-size-4 publication-authors" style="margin-top: 0.75rem;">
@@ -670,14 +658,14 @@
               <div class="accept-badge-wrap">
                 <div class="accept-badge is-size-6-mobile is-size-5-tablet">
                   <span class="tag-pill">Accepted</span>
-                  <span>Long paper at CVPR 2026 (GRAIL-V)</span>
+                  <span>IEEE/ACM CHASE 2026</span>
                 </div>
               </div>
 
               <div class="custom-buttons">
                 <a href="" target="_blank" class="button is-dark is-rounded">
                   <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                  <span>CVPR Proceedings Paper (Coming Soon)</span>
+                  <span>Paper (Coming Soon)</span>
                 </a>
 
                 <a href="" target="_blank" class="button is-dark is-rounded">
@@ -704,20 +692,20 @@
               <div class="columns is-centered spacer-top">
                 <div class="column is-4">
                   <div class="metric-card">
-                    <h3><span class="metric-value">34.4%</span></h3>
-                    <p>MAE reduction over zero-shot prompting with Gemini-2.5-Flash</p>
+                    <h3><span class="metric-value">≈30%</span></h3>
+                    <p>MAE reduction over signal-only baselines</p>
                   </div>
                 </div>
                 <div class="column is-4">
                   <div class="metric-card">
-                    <h3><span class="metric-value">31.0%</span></h3>
-                    <p>MAE reduction over zero-shot prompting with GPT-4o</p>
+                    <h3><span class="metric-value">0.92</span></h3>
+                    <p>Best segment-level R² with VLS-RR few-shot auditing</p>
                   </div>
                 </div>
                 <div class="column is-4">
                   <div class="metric-card">
-                    <h3><span class="metric-value">93%</span></h3>
-                    <p>Coverage in routed mode at 4.1 s average latency and 1.6 GB peak memory</p>
+                    <h3><span class="metric-value">0.82–1.71s</span></h3>
+                    <p>Latency per 6-second window on embedded edge hardware</p>
                   </div>
                 </div>
               </div>
@@ -732,10 +720,10 @@
       <div class="container is-max-widescreen">
         <div class="hero-body">
           <div class="section-figure">
-            <img src="static/images/figure 1.png" alt="Figure 1" onerror="this.onerror=null; this.src='static/images/figure1.png';">
+            <img src="static/images/figure1.png" alt="Figure 1 overview" onerror="this.onerror=null; this.src='static/images/figure 1.png';">
           </div>
           <p class="figure-caption">
-            CALIBRA improves over one-shot prompting by routing difficult segments, checking agreement across evidence channels, repairing conflicts when needed, and abstaining when evidence remains unreliable.
+            <strong>Figure 1.</strong> Overview of VLS-RR. The framework first extracts fused respiratory motion signals and visual artifacts from contactless video, then uses a vision-language model to summarize these artifacts into compact evidence, and finally uses a small language model to audit candidate respiratory-rate estimates with confidence and reliability labels.
           </p>
         </div>
       </div>
@@ -748,7 +736,7 @@
             <h2 class="title is-3 has-text-centered title-with-line">Abstract</h2>
             <div class="content has-text-justified abstract-text">
               <p>
-                Contactless physiological monitoring offers a promising path toward low-burden health sensing, but reliable inference from short video segments remains difficult when visual evidence is weak, corrupted by motion, or spectrally ambiguous. We present CALIBRA, a calibration-aware multi-agent framework for contactless respiratory rate (RR) estimation that treats prediction as an evidence-grounded verification problem rather than a one-shot prompting task. CALIBRA operates on a structured artifact bundle with lightweight signal-derived candidate rates, and performs routing, specialized vision-language evidence analysis, critic-based consistency checking, targeted repair, and calibrated arbitration with optional abstention. On our in-house benchmark, CALIBRA consistently outperforms prompting-only baselines across multiple backbones. With Gemini-2.5-Flash, it reduces mean absolute error (MAE) from 5.21 to 3.42, corresponding to a 34.4% reduction over zero-shot prompting and a 16.8% reduction over chain-of-thought prompting. With GPT-4o, it reduces MAE from 5.48 to 3.78, a 31.0% reduction over zero-shot prompting. CALIBRA also improves grounding and consistency in judge-based evaluation, indicating better evidence alignment beyond numerical accuracy alone. Under resource constraints, a routed configuration maintains 93% coverage at 4.1 s average latency and 1.6 GB peak memory. These results show that robust contactless physiological inference depends not only on stronger multimodal backbones, but also on explicit verification of whether predictions are supported by the available evidence.
+                Contactless respiratory monitoring from video is a promising alternative to wearable sensors but remains sensitive to motion artifacts and variations in viewpoint and lighting, which degrade the reliability of respiratory rate (RR) estimates. Traditional signal processing methods often struggle to separate physiological motion from visual artifacts, while large multimodal models can reason about these artifacts but are often too computationally demanding for privacy-sensitive or embedded deployments. We propose <strong>VLS-RR</strong> (Visual–Language–SLM Respiratory Rate) auditor, a three-stage framework where video segments are converted into fused motion signals and summary plots, a vision-language model produces a textual description of rhythm, breath count, and artifacts, and small language models perform auditing over this evidence and signal-derived RR candidates. Across a 50-video belt-synchronized dataset, VLS-RR improves segment-level accuracy over signal-only and numeric-only baselines while remaining practical for edge deployment.
               </p>
             </div>
           </div>
@@ -759,36 +747,36 @@
     <section class="section">
       <div class="container is-max-desktop">
         <div class="explain-block">
-          <strong><em>CALIBRA</em></strong> is a <strong>calibration-aware multi-agent framework</strong> for <strong>contactless respiratory rate estimation</strong>. Instead of relying on <em>one-shot prompting</em> alone, it combines <strong>routing</strong>, <strong>evidence verification</strong>, <strong>repair</strong>, and <strong>calibrated arbitration</strong> to produce <strong>more reliable predictions</strong> under uncertain visual evidence.
+          <strong><em>VLS-RR</em></strong> is a <strong>three-stage framework</strong> for <strong>contactless respiratory-rate estimation</strong> that <strong>decouples visual perception from downstream reasoning</strong>, enabling more <strong>robust</strong>, <strong>interpretable</strong>, and <strong>edge-deployable</strong> prediction from short video segments.
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered title-with-line">Why CALIBRA</h2>
+        <h2 class="title is-3 has-text-centered title-with-line">Why VLS-RR</h2>
         <div class="columns">
           <div class="column">
             <div class="info-card">
-              <h3 class="title is-5">Prompt-only inference can fail quietly</h3>
+              <h3 class="title is-5">Signal-only estimation is fragile</h3>
               <p>
-                Difficult segments often contain motion corruption, weak periodicity, or harmonic ambiguity. A model can still output a plausible respiratory rate even when the evidence is inconsistent.
+                Video-based respiratory-rate estimation is easily affected by motion, occlusion, lighting changes, viewpoint variation, and non-respiratory body movement, which can distort extracted breathing signals.
               </p>
             </div>
           </div>
           <div class="column">
             <div class="info-card">
-              <h3 class="title is-5">Verification improves decision discipline</h3>
+              <h3 class="title is-5">Visual evidence improves trustworthiness</h3>
               <p>
-                CALIBRA checks candidate rates against structured evidence, selectively repairs conflicts, and commits only after consistency improves.
+                Instead of relying only on numeric RR candidates, VLS-RR reasons over waveform regularity, motion spikes, breath-count cues, and agreement or disagreement across estimates.
               </p>
             </div>
           </div>
           <div class="column">
             <div class="info-card">
-              <h3 class="title is-5">Reliability matters in deployment</h3>
+              <h3 class="title is-5">Small models make deployment practical</h3>
               <p>
-                The framework can abstain when evidence is not coherent enough, improving calibration and safety instead of forcing unreliable predictions.
+                By separating artifact interpretation from final decision-making, the framework enables compact SLM auditors to run efficiently in privacy-sensitive and embedded settings.
               </p>
             </div>
           </div>
@@ -796,20 +784,20 @@
       </div>
     </section>
 
-    <section class="hero is-small">
+    <section class="hero is-small soft-section">
       <div class="hero-body">
         <div class="container is-max-desktop">
           <h2 class="title is-3 has-text-centered title-with-line">Method</h2>
 
           <p class="compact-p method-text">
-            Each segment is represented as a four-view artifact bundle with an annotated frame, respiratory signal plot, optical-flow summary, and histogram view, together with deterministic candidate respiratory rates. The framework first estimates whether a segment appears easy or ambiguous, then routes it through specialized agents that inspect waveform structure, motion quality, visual periodicity, and disagreement between candidate estimates. A critic module aggregates the evidence, checks consistency, and flags conflicts. When needed, a repair stage revisits uncertain evidence and updates the preferred interpretation before an arbiter produces the final respiratory-rate estimate together with a calibrated confidence decision. This design allows CALIBRA to move beyond one-pass prompting and instead make decisions through explicit evidence checking and controlled refinement.
+            VLS-RR takes short contactless chest-video segments and processes them in three stages. First, it extracts a fused respiratory motion signal, signal-derived RR candidates, and visual artifacts such as waveform plots, optical-flow summaries, and candidate-comparison charts. Second, a vision-language model converts these artifacts into compact textual evidence describing rhythmicity, approximate breath count, artifact severity, and agreement between estimates. Third, a small language model audits this visual evidence together with the signal-derived candidates and outputs a validated respiratory-rate estimate along with confidence and reliability labels.
           </p>
 
           <div class="section-figure">
-            <img src="static/images/figure 2.png" alt="Figure 2" onerror="this.onerror=null; this.src='static/images/figure2.png';">
+            <img src="static/images/figure1.png" alt="Figure 1 method" onerror="this.onerror=null; this.src='static/images/figure 1.png';">
           </div>
           <p class="figure-caption">
-            Overview of CALIBRA’s evidence-grounded verification pipeline.
+            The three-stage design decouples perception from reasoning: artifact generation, visual evidence extraction, and SLM-based respiratory-rate auditing.
           </p>
         </div>
       </div>
@@ -817,325 +805,286 @@
 
     <section class="section">
       <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered section-title-tight title-with-line">Model's Performance</h2>
+        <h2 class="title is-3 has-text-centered title-with-line">Dataset and Collection Setup</h2>
+        <p class="compact-p method-text">
+          We evaluate the framework on an in-house belt-synchronized dataset consisting of 50 RGB videos, each roughly 2.5–3.5 minutes long at 1920×1080 and 30 fps. The recordings cover multiple breathing patterns and viewpoints, including frontal, oblique, overhead, and supine settings. Ground-truth respiratory signals are obtained using a Vernier respiration belt synchronized with the video stream.
+        </p>
+        <div class="section-figure">
+          <img src="static/images/figure2.png" alt="Figure 2 dataset collection" onerror="this.onerror=null; this.src='static/images/figure 2.png';">
+        </div>
+        <p class="figure-caption">
+          <strong>Figure 2.</strong> In-house dataset collection procedure. The dataset includes multiple postures and synchronized belt-based ground truth, along with ROI extraction from video for contactless respiratory analysis.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered title-with-line">Results</h2>
 
         <div class="results-shell">
           <div class="results-topline">
-            CALIBRA improves error, grounding, and consistency while remaining practical under routed deployment.
+            The full VLS-RR pipeline improves substantially over classical signal-only baselines and over an SLM that sees only numerical candidates. In the full framework, MAE drops to <strong>5.2 bpm</strong> and R² rises to <strong>0.92</strong> in the few-shot setting, compared with <strong>7.4 bpm</strong> and <strong>0.84</strong> for the mean of the two classical estimates.
           </div>
 
           <div class="results-tabs">
-            <button class="results-tab-btn is-active" onclick="showResultsTab(event, 'combined-tab')">Combined</button>
-            <button class="results-tab-btn" onclick="showResultsTab(event, 'quality-tab')">Quality</button>
-            <button class="results-tab-btn" onclick="showResultsTab(event, 'efficiency-tab')">Efficiency</button>
+            <button class="results-tab-btn is-active" onclick="showResultsTab(event, 'tab-main')">Main Results</button>
+            <button class="results-tab-btn" onclick="showResultsTab(event, 'tab-auditors')">SLM Auditors</button>
           </div>
 
-          <div id="combined-tab" class="results-panel is-active">
+          <div id="tab-main" class="results-panel is-active">
             <div class="results-metric-grid">
               <div class="results-stat">
-                <div class="value">3.42</div>
-                <div class="label">MAE</div>
-                <div class="sub">Gemini-2.5-Flash + CALIBRA</div>
+                <div class="value">5.2</div>
+                <div class="label">Best MAE</div>
+                <div class="sub">few-shot VLS-RR</div>
               </div>
               <div class="results-stat">
-                <div class="value">34.4%</div>
-                <div class="label">Reduction</div>
-                <div class="sub">vs zero-shot prompting</div>
+                <div class="value">7.0</div>
+                <div class="label">Best RMSE</div>
+                <div class="sub">few-shot VLS-RR</div>
               </div>
               <div class="results-stat">
-                <div class="value">31.0%</div>
-                <div class="label">Reduction</div>
-                <div class="sub">GPT-4o vs zero-shot</div>
+                <div class="value">0.92</div>
+                <div class="label">Best R²</div>
+                <div class="sub">few-shot VLS-RR</div>
               </div>
               <div class="results-stat">
-                <div class="value">93%</div>
-                <div class="label">Coverage</div>
-                <div class="sub">routed mode</div>
+                <div class="value">20–25%</div>
+                <div class="label">MAE reduction</div>
+                <div class="sub">vs strongest non-VLS-RR baseline</div>
               </div>
             </div>
 
             <div class="table-card">
               <div class="table-head">
-                <h3>Main benchmark results</h3>
-                <span class="table-chip">lower is better</span>
+                <h3>Table III. Overall Segment-Level Respiratory-Rate Estimation Performance</h3>
+                <span class="table-chip">Main comparison</span>
               </div>
               <div class="table-wrap">
                 <table class="results-table">
                   <thead>
                     <tr>
                       <th>Method</th>
+                      <th>Uses VLM</th>
+                      <th>Uses CoT</th>
+                      <th>MAE ↓</th>
+                      <th>ME</th>
+                      <th>RMSE ↓</th>
+                      <th>R² ↑</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="method-cell">RRpeaks only</td>
+                      <td>✗</td>
+                      <td>✗</td>
+                      <td>7.9</td>
+                      <td>0.43</td>
+                      <td>10.3</td>
+                      <td>0.82</td>
+                    </tr>
+                    <tr>
+                      <td class="method-cell">RRFFT only</td>
+                      <td>✗</td>
+                      <td>✗</td>
+                      <td>8.6</td>
+                      <td>-0.64</td>
+                      <td>11.1</td>
+                      <td>0.80</td>
+                    </tr>
+                    <tr>
+                      <td class="method-cell">Mean(RRpeaks, RRFFT)</td>
+                      <td>✗</td>
+                      <td>✗</td>
+                      <td>7.4</td>
+                      <td>-0.31</td>
+                      <td>9.7</td>
+                      <td>0.84</td>
+                    </tr>
+                    <tr>
+                      <td class="method-cell">Direct SLM on numbers (No-VLM)</td>
+                      <td>✗</td>
+                      <td>✓</td>
+                      <td>6.9</td>
+                      <td>-0.52</td>
+                      <td>9.1</td>
+                      <td>0.86</td>
+                    </tr>
+                    <tr>
+                      <td class="method-cell">VLM-only (evidence → implied rate)</td>
+                      <td>✓</td>
+                      <td>✗</td>
+                      <td>6.7</td>
+                      <td>0.21</td>
+                      <td>8.8</td>
+                      <td>0.87</td>
+                    </tr>
+                    <tr>
+                      <td class="method-cell">VLS-RR (zero-shot auditor)</td>
+                      <td>✓</td>
+                      <td>✓</td>
+                      <td>5.9</td>
+                      <td>-0.24</td>
+                      <td>7.9</td>
+                      <td>0.90</td>
+                    </tr>
+                    <tr>
+                      <td class="method-cell best">VLS-RR (few-shot auditor)</td>
+                      <td>✓</td>
+                      <td>✓</td>
+                      <td class="best">5.2</td>
+                      <td class="best">0.11</td>
+                      <td class="best">7.0</td>
+                      <td class="best">0.92</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div id="tab-auditors" class="results-panel">
+            <div class="results-topline" style="margin-top:0;">
+              Across SLM auditors, few-shot prompting consistently improves accuracy and tends to increase the proportion of clean, high-confidence outputs. The paper reports typical MAE improvements of roughly <strong>0.4–1.3 bpm</strong>, with especially strong gains for smaller auditors.
+            </div>
+
+            <div class="table-card">
+              <div class="table-head">
+                <h3>Table IV. Representative SLM Auditor Performance</h3>
+                <span class="table-chip">Representative rows from the draft</span>
+              </div>
+              <div class="table-wrap">
+                <table class="results-table">
+                  <thead>
+                    <tr>
+                      <th>SLM Auditor</th>
+                      <th>Prompting</th>
                       <th>MAE ↓</th>
                       <th>RMSE ↓</th>
-                      <th>Bias ↓</th>
+                      <th>ME</th>
+                      <th>R² ↑</th>
+                      <th>Clean / High-confidence ↑</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="method-cell">CALIBRA (Gemini-2.5-Flash)</td>
-                      <td class="best">3.42</td>
-                      <td class="best">4.88</td>
-                      <td class="best">0.29</td>
-                    </tr>
-                    <tr>
-                      <td class="method-cell">CALIBRA (GPT-4o)</td>
-                      <td>3.78</td>
-                      <td>5.26</td>
-                      <td>0.34</td>
-                    </tr>
-                    <tr>
-                      <td class="method-cell">CALIBRA (Qwen3-VL-8B)</td>
-                      <td>4.35</td>
-                      <td>5.92</td>
-                      <td>0.41</td>
-                    </tr>
-                    <tr>
-                      <td class="method-cell">CALIBRA (DeepSeek-R1-7B)</td>
-                      <td>4.58</td>
-                      <td>6.15</td>
-                      <td>0.45</td>
-                    </tr>
-                    <tr>
-                      <td class="method-cell">CALIBRA (InternVL3-8B)</td>
-                      <td>4.71</td>
-                      <td>6.28</td>
-                      <td>0.47</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <div id="quality-tab" class="results-panel">
-            <div class="results-metric-grid">
-              <div class="results-stat">
-                <div class="value">0.62</div>
-                <div class="label">RG</div>
-                <div class="sub">response grounding</div>
-              </div>
-              <div class="results-stat">
-                <div class="value">0.79</div>
-                <div class="label">CRA</div>
-                <div class="sub">critic agreement</div>
-              </div>
-              <div class="results-stat">
-                <div class="value">0.90</div>
-                <div class="label">CS</div>
-                <div class="sub">consistency score</div>
-              </div>
-              <div class="results-stat">
-                <div class="value">0.82</div>
-                <div class="label">EAR</div>
-                <div class="sub">evidence alignment</div>
-              </div>
-            </div>
-
-            <div class="table-card">
-              <div class="table-head">
-                <h3>Judge-based output quality</h3>
-                <span class="table-chip">higher is better</span>
-              </div>
-              <div class="table-wrap">
-                <table class="results-table">
-                  <thead>
-                    <tr>
-                      <th>Model / Setting</th>
-                      <th>Grounding ↑</th>
-                      <th>Consistency ↑</th>
-                      <th>Rationale ↑</th>
-                      <th>Confidence ↑</th>
-                      <th>Plausibility ↑</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="method-cell">GPT-4o (CoT)</td>
-                      <td>7.6</td>
-                      <td>7.4</td>
-                      <td>7.3</td>
-                      <td>7.0</td>
-                      <td>7.5</td>
-                    </tr>
-                    <tr>
-                      <td class="method-cell">GPT-4o (CALIBRA)</td>
-                      <td>8.6</td>
-                      <td>8.4</td>
-                      <td>8.2</td>
-                      <td>8.1</td>
-                      <td>8.5</td>
-                    </tr>
-                    <tr>
-                      <td class="method-cell">Qwen3-VL-8B (CoT)</td>
+                      <td class="method-cell">MobileLLM-1B</td>
+                      <td>Zero-shot</td>
                       <td>7.1</td>
+                      <td>9.0</td>
+                      <td>0.10</td>
+                      <td>0.89</td>
+                      <td>79 / 49</td>
+                    </tr>
+                    <tr>
+                      <td class="method-cell">MobileLLM-1B</td>
+                      <td>Few-shot</td>
                       <td>6.9</td>
-                      <td>6.8</td>
-                      <td>6.7</td>
+                      <td>8.8</td>
+                      <td>-0.12</td>
+                      <td>0.90</td>
+                      <td>82 / 55</td>
+                    </tr>
+                    <tr>
+                      <td class="method-cell">TinyLlama-1.1B</td>
+                      <td>Zero-shot</td>
                       <td>7.0</td>
+                      <td>8.9</td>
+                      <td>0.02</td>
+                      <td>0.89</td>
+                      <td>81 / 51</td>
                     </tr>
                     <tr>
-                      <td class="method-cell">Qwen3-VL-8B (CALIBRA)</td>
+                      <td class="method-cell">TinyLlama-1.1B</td>
+                      <td>Few-shot</td>
+                      <td>6.2</td>
                       <td>8.0</td>
-                      <td>7.8</td>
-                      <td>7.6</td>
-                      <td>7.5</td>
-                      <td>7.9</td>
+                      <td>-0.11</td>
+                      <td>0.90</td>
+                      <td>…</td>
                     </tr>
                     <tr>
-                      <td class="method-cell">Gemini-2.5-Flash (CALIBRA)</td>
-                      <td class="best">8.9</td>
-                      <td class="best">8.7</td>
-                      <td class="best">8.5</td>
-                      <td class="best">8.6</td>
-                      <td class="best">8.8</td>
+                      <td colspan="7" style="text-align:left;">
+                        Add the remaining auditor rows after you extract the full Table IV values from the final paper PDF.
+                      </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
+
           </div>
-
-          <div id="efficiency-tab" class="results-panel">
-            <div class="results-metric-grid">
-              <div class="results-stat">
-                <div class="value">4.1s</div>
-                <div class="label">Avg. Latency</div>
-                <div class="sub">routed mode</div>
-              </div>
-              <div class="results-stat">
-                <div class="value">8.7s</div>
-                <div class="label">P95 Latency</div>
-                <div class="sub">routed mode</div>
-              </div>
-              <div class="results-stat">
-                <div class="value">1.6 GB</div>
-                <div class="label">Peak RAM</div>
-                <div class="sub">routed mode</div>
-              </div>
-              <div class="results-stat">
-                <div class="value">93%</div>
-                <div class="label">Coverage</div>
-                <div class="sub">kept predictions</div>
-              </div>
-            </div>
-
-            <div class="table-card">
-              <div class="table-head">
-                <h3>Deployment efficiency</h3>
-                <span class="table-chip">latency vs coverage</span>
-              </div>
-              <div class="table-wrap">
-                <table class="results-table">
-                  <thead>
-                    <tr>
-                      <th>System / Mode</th>
-                      <th>Avg. Latency ↓ (s)</th>
-                      <th>P95 Latency ↓ (s)</th>
-                      <th>Peak RAM ↓ (GB)</th>
-                      <th>Coverage ↑ (%)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="method-cell">Deterministic (FFT+Peak)</td>
-                      <td class="best">0.03</td>
-                      <td class="best">0.05</td>
-                      <td class="best">0.35</td>
-                      <td class="best">100</td>
-                    </tr>
-                    <tr>
-                      <td class="method-cell">Single-agent (CoT)</td>
-                      <td>2.4</td>
-                      <td>5.1</td>
-                      <td>1.1</td>
-                      <td>98</td>
-                    </tr>
-                    <tr>
-                      <td class="method-cell">CALIBRA (Routed mix)</td>
-                      <td>4.1</td>
-                      <td>8.7</td>
-                      <td>1.6</td>
-                      <td>93</td>
-                    </tr>
-                    <tr>
-                      <td class="method-cell">CALIBRA (Strict pass@3)</td>
-                      <td>7.8</td>
-                      <td>15.6</td>
-                      <td>1.9</td>
-                      <td>91</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section soft-section">
       <div class="container is-max-desktop">
-        <div class="section-figure" style="margin-top:0;">
-          <img src="static/images/figure 3.png" alt="Figure 3 Benchmark plot" onerror="this.onerror=null; this.src='static/images/figure3.png';">
-        </div>
-        <p class="figure-caption">
-          Segment-level MAE for prompting baselines and CALIBRA across backbones.
+        <h2 class="title is-3 has-text-centered title-with-line">On-Device Efficiency and Accuracy–Efficiency Trade-Offs</h2>
+        <p class="compact-p method-text">
+          To study embedded practicality, the full VLS-RR pipeline is profiled on NVIDIA Jetson Orin across different SLM auditors. Average latency per 6-second window ranges from approximately 0.82 seconds for MobileLLM-1B to 1.71 seconds for medgemma-4B-it, while larger auditors deliver stronger accuracy at higher latency and energy cost.
         </p>
-      </div>
-    </section>
 
-    <section class="hero is-small">
-      <div class="hero-body">
-        <div class="container is-max-desktop">
-          <h2 class="title is-3 has-text-centered title-with-line">Qualitative Results</h2>
-
-          <div class="qualitative-wrap">
+        <div class="two-figure-grid">
+          <div>
             <div class="section-figure" style="margin-top:0;">
-              <img src="static/images/figure 4.png" alt="Figure 4" onerror="this.onerror=null; this.src='static/images/figure4.png';">
+              <img src="static/images/figure3.png" alt="Figure 3 on-device performance" onerror="this.onerror=null; this.src='static/images/figure 3.png';">
             </div>
             <p class="figure-caption">
-              A representative challenging segment where CALIBRA resolves the final prediction through routing, evidence verification, and calibrated arbitration.
+              <strong>Figure 3.</strong> On-device metrics across SLM auditors on Jetson Orin, including latency per 6-second segment, power, and energy.
+            </p>
+          </div>
+
+          <div>
+            <div class="section-figure" style="margin-top:0;">
+              <img src="static/images/figure4.png" alt="Figure 4 trade-offs" onerror="this.onerror=null; this.src='static/images/figure 4.png';">
+            </div>
+            <p class="figure-caption">
+              <strong>Figure 4.</strong> Accuracy–efficiency trade-offs across auditors, comparing normalized MAE, latency, and energy.
             </p>
           </div>
         </div>
+
+        <div class="columns is-centered spacer-top">
+          <div class="column is-4">
+            <div class="metric-card">
+              <h3><span class="metric-value">0.82s</span></h3>
+              <p>Lowest average latency per 6-second segment</p>
+            </div>
+          </div>
+          <div class="column is-4">
+            <div class="metric-card">
+              <h3><span class="metric-value">1.71s</span></h3>
+              <p>Latency of the largest evaluated auditor</p>
+            </div>
+          </div>
+          <div class="column is-4">
+            <div class="metric-card">
+              <h3><span class="metric-value">5.2–5.4</span></h3>
+              <p>Best MAE range for stronger 3B–4B auditors</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered section-title-tight title-with-line">Ablation</h2>
-        <p class="compact-p" style="text-align:center;">The main gains come from routing, critic checks, repair, and calibrated abstention.</p>
+        <h2 class="title is-3 has-text-centered title-with-line">Qualitative Example</h2>
+        <p class="compact-p method-text">
+          Beyond aggregate results, the framework also helps explain how conflicting candidates are resolved. In the representative example below, Stage 1 produces discrepant estimates, the VLM describes rhythmic breathing with visible cycles and non-respiratory motion spikes, and the SLM auditor selects the peak-based estimate while labeling the segment as noisy but usable with medium confidence.
+        </p>
 
-        <div class="ablation-figure-wrap">
-          <div class="section-figure" style="margin-top:0;">
-            <img src="static/images/figure 5.png" alt="Figure 5 Ablation" onerror="this.onerror=null; this.src='static/images/figure5.png';">
-          </div>
-          <p class="figure-caption">
-            Component ablation of CALIBRA on the best-performing configuration.
-          </p>
+        <div class="section-figure">
+          <img src="static/images/figure5.png" alt="Figure 5 qualitative example" onerror="this.onerror=null; this.src='static/images/figure 5.png';">
         </div>
+        <p class="figure-caption">
+          <strong>Figure 5.</strong> A representative segment where VLS-RR resolves conflicting signal-derived candidates using visual analysis and structured reasoning rather than relying on a single raw estimate.
+        </p>
 
-        <div class="ablation-metric-row">
-          <div class="ablation-mini-card">
-            <div class="value">3.42</div>
-            <div class="label">Full System MAE</div>
-            <div class="sub">best configuration</div>
-          </div>
-          <div class="ablation-mini-card">
-            <div class="value">3.94</div>
-            <div class="label">w/o Critic</div>
-            <div class="sub">largest drop</div>
-          </div>
-          <div class="ablation-mini-card">
-            <div class="value">3.82</div>
-            <div class="label">w/o Repair</div>
-            <div class="sub">higher error</div>
-          </div>
-          <div class="ablation-mini-card">
-            <div class="value">3.66</div>
-            <div class="label">w/o Routing</div>
-            <div class="sub">less efficient selection</div>
-          </div>
+        <div class="qual-box">
+          <strong>Why this matters.</strong> The goal is not only to predict a respiratory rate, but also to explain whether the available evidence is coherent enough to trust that estimate. This makes the framework more interpretable and better suited to practical deployment than a single-pass predictor that outputs only one number.
         </div>
       </div>
     </section>
@@ -1149,11 +1098,11 @@
             <span class="copy-text">Copy</span>
           </button>
         </div>
-<pre id="bibtex-code"><code>@InProceedings{Sakib_2026_CVPR,
-    author    = {Sakib, Shadman and Shinde, Gaurav and Roy, Nirmalya},
-    title     = {CALIBRA: Calibration-Aware Multi-Agent Verification for Contactless Physiological Monitoring},
-    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)},
-    year      = {2026}
+<pre id="bibtex-code"><code>@inproceedings{sakib2026vlsrr,
+  author    = {Shadman Sakib and Gaurav Shinde and Nirmalya Roy},
+  title     = {Decoupling Perception and Reasoning for Contactless Respiratory Rate with Vision Language and Small Language Models},
+  booktitle = {Proceedings of the IEEE/ACM Conference on Connected Health: Applications, Systems and Engineering Technologies (CHASE)},
+  year      = {2026}
 }</code></pre>
       </div>
     </section>
@@ -1162,9 +1111,9 @@
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-8">
-            <div class="content">
+            <div class="content has-text-centered">
               <p>
-                This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>.
+                This page was adapted from your earlier academic project-page structure and customized for the CHASE 2026 VLS-RR paper.
               </p>
             </div>
           </div>
