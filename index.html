@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="title" content="CALIBRA: Calibration-Aware Multi-Agent Verification for Contactless Physiological Monitoring">
+  <meta name="description" content="CALIBRA is a calibration-aware multi-agent framework for contactless respiratory rate estimation with routing, evidence verification, repair, and calibrated arbitration.">
+  <meta name="keywords" content="CALIBRA, respiratory rate estimation, contactless physiological monitoring, multimodal reasoning, verification, vision-language models, CVPR">
+  <meta name="author" content="Shadman Sakib, Gaurav Shinde, Nirmalya Roy">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="University of Maryland, Baltimore County">
+  <meta property="og:title" content="CALIBRA: Calibration-Aware Multi-Agent Verification for Contactless Physiological Monitoring">
+  <meta property="og:description" content="A calibration-aware multi-agent framework for contactless respiratory rate estimation with routing, evidence verification, repair, and calibrated arbitration.">
+  <meta property="og:url" content="https://sakibshadman.github.io/CALIBRA-project-page/">
+  <meta property="og:image" content="https://sakibshadman.github.io/CALIBRA-project-page/static/images/figure 1.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CALIBRA: Calibration-Aware Multi-Agent Verification for Contactless Physiological Monitoring">
+  <meta name="twitter:description" content="A calibration-aware multi-agent framework for contactless respiratory rate estimation with routing, evidence verification, repair, and calibrated arbitration.">
+  <meta name="twitter:image" content="https://sakibshadman.github.io/CALIBRA-project-page/static/images/figure 1.png">
+
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+
+  <title>CALIBRA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+  <noscript>
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+
+  <style>
+    :root {
+      --primary: #1d4ed8;
+      --author: #2563eb;
+      --ink: #111827;
+      --muted: #4b5563;
+      --border: #e5e7eb;
+      --card: #ffffff;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --shadow-soft: 0 6px 18px rgba(15, 23, 42, 0.06);
+      --radius: 18px;
+      --dark-table: #1f1f1f;
+      --heading-line: #2563eb;
+      --accept-bg: #f5f3ff;
+      --accept-border: #ddd6fe;
+      --accept-pill: #4c1d95;
+      --explain-bg: #eef2ff;
+      --explain-border: #6366f1;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--ink);
+      background: #ffffff;
+    }
+
+    .hero-gradient {
+      background: radial-gradient(circle at top, #eff6ff 0%, #ffffff 54%, #ffffff 100%);
+    }
+
+    .hero-logo-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .hero-logo-row img {
+      height: 68px;
+      width: auto;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 14px;
+      padding: 0.45rem 0.7rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .accept-badge-wrap {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .accept-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.85rem 1.2rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accept-bg), #eff6ff);
+      border: 1px solid var(--accept-border);
+      color: #1f2937;
+      font-weight: 800;
+      box-shadow: 0 10px 25px rgba(76, 29, 149, 0.08);
+    }
+
+    .accept-badge .tag-pill {
+      background: linear-gradient(135deg, var(--accept-pill), #6d28d9);
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.38rem 0.78rem;
+      font-size: 0.84rem;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
+
+    .publication-authors a {
+      color: var(--author);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .publication-authors a:hover {
+      color: #1d4ed8;
+    }
+
+    .affiliation-line {
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    .custom-buttons {
+      margin-top: 1.35rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .custom-buttons .button {
+      border-radius: 999px;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .metric-card {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      padding: 1.2rem;
+      height: 100%;
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+    }
+
+    .metric-card h3 {
+      margin-bottom: 0.45rem;
+      font-size: 2.05rem;
+      font-weight: 800;
+      color: #111827;
+      line-height: 1.05;
+    }
+
+    .metric-card .metric-value {
+      display: inline-block;
+      font-weight: 800;
+      color: #1d4ed8;
+      background: linear-gradient(180deg, #eef4ff 0%, #dbeafe 100%);
+      border: 1px solid #bfdbfe;
+      border-radius: 999px;
+      padding: 0.22rem 0.75rem;
+      box-shadow: 0 4px 12px rgba(29, 78, 216, 0.10);
+    }
+
+    .metric-card p {
+      color: #1f2937;
+      line-height: 1.55;
+    }
+
+    .info-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: #ffffff;
+      padding: 1.25rem;
+      height: 100%;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .section-figure {
+      margin-top: 1rem;
+      margin-bottom: 0.75rem;
+      text-align: center;
+    }
+
+    .section-figure img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: white;
+      display: block;
+      margin: 0 auto;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .figure-caption {
+      margin-top: 0.75rem;
+      font-size: 0.98rem;
+      color: #555;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .compact-p {
+      max-width: 900px;
+      margin: 0 auto 1rem auto;
+      color: var(--muted);
+      line-height: 1.82;
+    }
+
+    .compact-p.method-text {
+      text-align: justify;
+    }
+
+    .spacer-top {
+      margin-top: 1rem;
+    }
+
+    .section-title-tight {
+      margin-bottom: 0.45rem !important;
+    }
+
+    .title-with-line {
+      position: relative;
+      margin-bottom: 1.15rem !important;
+    }
+
+    .title-with-line::after {
+      content: "";
+      display: block;
+      width: 62px;
+      height: 3px;
+      background: var(--heading-line) !important;
+      border-radius: 999px;
+      margin: 0.65rem auto 0 auto;
+    }
+
+    .explain-block {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 1.2rem 1.35rem;
+      border-left: 5px solid var(--explain-border);
+      background: var(--explain-bg);
+      color: #111827;
+      border-radius: 14px;
+      line-height: 1.9;
+      font-size: 1.03rem;
+    }
+
+    .explain-block strong,
+    .explain-block em {
+      color: #111827;
+    }
+
+    .results-shell {
+      margin-top: 1rem;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .results-topline {
+      max-width: 940px;
+      margin: 0 auto 1.25rem auto;
+      padding: 1.15rem 1.25rem;
+      border-left: 5px solid #6366f1;
+      background: #eef2ff;
+      border-radius: 14px;
+      color: #1f2937;
+      font-size: 1.04rem;
+      line-height: 1.78;
+    }
+
+    .results-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.35rem;
+    }
+
+    .results-tab-btn {
+      border: 1px solid #d1d5db;
+      background: #fff;
+      color: #1f2937;
+      border-radius: 10px;
+      padding: 0.7rem 1.15rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .results-tab-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .results-tab-btn.is-active {
+      background: #1f2937;
+      color: #fff;
+      border-color: #1f2937;
+    }
+
+    .results-panel {
+      display: none;
+    }
+
+    .results-panel.is-active {
+      display: block;
+    }
+
+    .results-metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .results-stat {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.2rem 1rem;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .results-stat .value {
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1.1;
+      color: #111827;
+    }
+
+    .results-stat .label {
+      margin-top: 0.45rem;
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .results-stat .sub {
+      margin-top: 0.18rem;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .table-card {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .table-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.1rem;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .table-head h3 {
+      margin: 0;
+      font-size: 1.06rem;
+      font-weight: 800;
+    }
+
+    .table-chip {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #374151;
+      padding: 0.34rem 0.72rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table.results-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+      font-size: 0.97rem;
+    }
+
+    table.results-table thead th {
+      background: var(--dark-table);
+      color: #ffffff;
+      font-weight: 800;
+      padding: 1rem 0.9rem;
+      text-align: center;
+      border: none;
+    }
+
+    table.results-table tbody td {
+      padding: 1rem 0.9rem;
+      border-bottom: 1px solid #e8e8e8;
+      text-align: center;
+      color: #111827;
+    }
+
+    table.results-table tbody tr:nth-child(even) {
+      background: #fafafa;
+    }
+
+    table.results-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    table.results-table tbody tr:hover {
+      background: #f3f4f6;
+    }
+
+    table.results-table td:first-child,
+    table.results-table th:first-child {
+      text-align: left;
+      padding-left: 1.2rem;
+    }
+
+    .method-cell {
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .best {
+      font-weight: 800;
+    }
+
+    .ablation-figure-wrap {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .ablation-metric-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      max-width: 980px;
+      margin: 1.25rem auto 0 auto;
+    }
+
+    .ablation-mini-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 1.1rem 0.9rem;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+    }
+
+    .ablation-mini-card .value {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.05;
+      color: #111827;
+    }
+
+    .ablation-mini-card .label {
+      margin-top: 0.42rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .ablation-mini-card .sub {
+      margin-top: 0.2rem;
+      font-size: 0.92rem;
+      color: #4b5563;
+    }
+
+    .qualitative-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .abstract-text,
+    .abstract-text p,
+    .section.hero.is-light .content,
+    .section.hero.is-light .content p {
+      color: #000 !important;
+    }
+
+    .bibtex-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .copy-bibtex-btn {
+      border: none;
+      background: #111827;
+      color: white;
+      border-radius: 999px;
+      padding: 0.65rem 1rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .copy-bibtex-btn:hover {
+      background: #1f2937;
+    }
+
+    pre {
+      border-radius: 12px;
+      padding: 1rem;
+      overflow-x: auto;
+      background: #f5f5f5;
+    }
+
+    .title.is-3::after,
+    .hero .title.is-3::after,
+    .section .title.is-3::after,
+    h2.title.is-3::after {
+      background: #2563eb !important;
+    }
+
+    @media (max-width: 1024px) {
+      .results-metric-grid,
+      .ablation-metric-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .affiliation-line {
+        white-space: normal;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-logo-row img {
+        height: 56px;
+      }
+
+      .results-shell {
+        padding: 1rem;
+      }
+
+      .results-metric-grid,
+      .ablation-metric-row {
+        grid-template-columns: 1fr;
+      }
+
+      .results-stat .value,
+      .ablation-mini-card .value {
+        font-size: 1.8rem;
+      }
+
+      .results-topline,
+      .explain-block {
+        font-size: 1rem;
+        padding: 1rem;
+      }
+
+      .accept-badge {
+        text-align: center;
+        line-height: 1.5;
+      }
+
+      .affiliation-line {
+        white-space: normal;
+      }
+
+      .compact-p.method-text {
+        text-align: left;
+      }
+    }
+  </style>
+
+  <script>
+    function copyBibTeX() {
+      const text = document.getElementById("bibtex-code").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector(".copy-text");
+        if (btn) {
+          btn.textContent = "Copied";
+          setTimeout(() => { btn.textContent = "Copy"; }, 1500);
+        }
+      });
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function showResultsTab(event, tabId) {
+      const panels = document.querySelectorAll('.results-panel');
+      const buttons = document.querySelectorAll('.results-tab-btn');
+
+      panels.forEach(panel => panel.classList.remove('is-active'));
+      buttons.forEach(button => button.classList.remove('is-active'));
+
+      document.getElementById(tabId).classList.add('is-active');
+      event.currentTarget.classList.add('is-active');
+    }
+  </script>
+</head>
+<body>
+
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <main id="main-content">
+
+    <section class="hero hero-gradient">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+
+              <div class="hero-logo-row">
+                <img src="static/images/cvpr.png" alt="CVPR logo" onerror="this.style.display='none'">
+                <img src="static/images/logo_grail.png" alt="GRAIL-V logo" onerror="this.style.display='none'">
+              </div>
+
+              <h1 class="title is-1 publication-title">
+                CALIBRA: Calibration-Aware Multi-Agent Verification for Contactless Physiological Monitoring
+              </h1>
+
+              <div class="is-size-4 publication-authors" style="margin-top: 0.75rem;">
+                <span class="author-block"><a href="">Shadman Sakib</a><sup>1</sup>,</span>
+                <span class="author-block"><a href="">Gaurav Shinde</a><sup>1</sup>,</span>
+                <span class="author-block"><a href="">Nirmalya Roy</a><sup>1</sup></span>
+              </div>
+
+              <div class="is-size-4 publication-authors" style="margin-top: 0.45rem;">
+                <span class="author-block affiliation-line">
+                  <sup>1</sup>Department of Information Systems, University of Maryland, Baltimore County, USA
+                </span>
+              </div>
+
+              <div class="accept-badge-wrap">
+                <div class="accept-badge is-size-6-mobile is-size-5-tablet">
+                  <span class="tag-pill">Accepted</span>
+                  <span>Long paper at CVPR 2026 (GRAIL-V)</span>
+                </div>
+              </div>
+
+              <div class="custom-buttons">
+                <a href="" target="_blank" class="button is-dark is-rounded">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>CVPR Proceedings Paper (Coming Soon)</span>
+                </a>
+
+                <a href="" target="_blank" class="button is-dark is-rounded">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv (Coming Soon)</span>
+                </a>
+
+                <a href="" target="_blank" class="button is-dark is-rounded">
+                  <span class="icon"><i class="fas fa-video"></i></span>
+                  <span>Video (Coming Soon)</span>
+                </a>
+
+                <a href="" target="_blank" class="button is-dark is-rounded">
+                  <span class="icon"><i class="fas fa-database"></i></span>
+                  <span>Dataset (Coming Soon)</span>
+                </a>
+
+                <a href="" target="_blank" class="button is-dark is-rounded">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code (Coming Soon)</span>
+                </a>
+              </div>
+
+              <div class="columns is-centered spacer-top">
+                <div class="column is-4">
+                  <div class="metric-card">
+                    <h3><span class="metric-value">34.4%</span></h3>
+                    <p>MAE reduction over zero-shot prompting with Gemini-2.5-Flash</p>
+                  </div>
+                </div>
+                <div class="column is-4">
+                  <div class="metric-card">
+                    <h3><span class="metric-value">31.0%</span></h3>
+                    <p>MAE reduction over zero-shot prompting with GPT-4o</p>
+                  </div>
+                </div>
+                <div class="column is-4">
+                  <div class="metric-card">
+                    <h3><span class="metric-value">93%</span></h3>
+                    <p>Coverage in routed mode at 4.1 s average latency and 1.6 GB peak memory</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero teaser">
+      <div class="container is-max-widescreen">
+        <div class="hero-body">
+          <div class="section-figure">
+            <img src="static/images/figure 1.png" alt="Figure 1" onerror="this.onerror=null; this.src='static/images/figure1.png';">
+          </div>
+          <p class="figure-caption">
+            CALIBRA improves over one-shot prompting by routing difficult segments, checking agreement across evidence channels, repairing conflicts when needed, and abstaining when evidence remains unreliable.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3 has-text-centered title-with-line">Abstract</h2>
+            <div class="content has-text-justified abstract-text">
+              <p>
+                Contactless physiological monitoring offers a promising path toward low-burden health sensing, but reliable inference from short video segments remains difficult when visual evidence is weak, corrupted by motion, or spectrally ambiguous. We present CALIBRA, a calibration-aware multi-agent framework for contactless respiratory rate (RR) estimation that treats prediction as an evidence-grounded verification problem rather than a one-shot prompting task. CALIBRA operates on a structured artifact bundle with lightweight signal-derived candidate rates, and performs routing, specialized vision-language evidence analysis, critic-based consistency checking, targeted repair, and calibrated arbitration with optional abstention. On our in-house benchmark, CALIBRA consistently outperforms prompting-only baselines across multiple backbones. With Gemini-2.5-Flash, it reduces mean absolute error (MAE) from 5.21 to 3.42, corresponding to a 34.4% reduction over zero-shot prompting and a 16.8% reduction over chain-of-thought prompting. With GPT-4o, it reduces MAE from 5.48 to 3.78, a 31.0% reduction over zero-shot prompting. CALIBRA also improves grounding and consistency in judge-based evaluation, indicating better evidence alignment beyond numerical accuracy alone. Under resource constraints, a routed configuration maintains 93% coverage at 4.1 s average latency and 1.6 GB peak memory. These results show that robust contactless physiological inference depends not only on stronger multimodal backbones, but also on explicit verification of whether predictions are supported by the available evidence.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="explain-block">
+          <strong><em>CALIBRA</em></strong> is a <strong>calibration-aware multi-agent framework</strong> for <strong>contactless respiratory rate estimation</strong>. Instead of relying on <em>one-shot prompting</em> alone, it combines <strong>routing</strong>, <strong>evidence verification</strong>, <strong>repair</strong>, and <strong>calibrated arbitration</strong> to produce <strong>more reliable predictions</strong> under uncertain visual evidence.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered title-with-line">Why CALIBRA</h2>
+        <div class="columns">
+          <div class="column">
+            <div class="info-card">
+              <h3 class="title is-5">Prompt-only inference can fail quietly</h3>
+              <p>
+                Difficult segments often contain motion corruption, weak periodicity, or harmonic ambiguity. A model can still output a plausible respiratory rate even when the evidence is inconsistent.
+              </p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="info-card">
+              <h3 class="title is-5">Verification improves decision discipline</h3>
+              <p>
+                CALIBRA checks candidate rates against structured evidence, selectively repairs conflicts, and commits only after consistency improves.
+              </p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="info-card">
+              <h3 class="title is-5">Reliability matters in deployment</h3>
+              <p>
+                The framework can abstain when evidence is not coherent enough, improving calibration and safety instead of forcing unreliable predictions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <h2 class="title is-3 has-text-centered title-with-line">Method</h2>
+
+          <p class="compact-p method-text">
+            Each segment is represented as a four-view artifact bundle with an annotated frame, respiratory signal plot, optical-flow summary, and histogram view, together with deterministic candidate respiratory rates. The framework first estimates whether a segment appears easy or ambiguous, then routes it through specialized agents that inspect waveform structure, motion quality, visual periodicity, and disagreement between candidate estimates. A critic module aggregates the evidence, checks consistency, and flags conflicts. When needed, a repair stage revisits uncertain evidence and updates the preferred interpretation before an arbiter produces the final respiratory-rate estimate together with a calibrated confidence decision. This design allows CALIBRA to move beyond one-pass prompting and instead make decisions through explicit evidence checking and controlled refinement.
+          </p>
+
+          <div class="section-figure">
+            <img src="static/images/figure 2.png" alt="Figure 2" onerror="this.onerror=null; this.src='static/images/figure2.png';">
+          </div>
+          <p class="figure-caption">
+            Overview of CALIBRA’s evidence-grounded verification pipeline.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered section-title-tight title-with-line">Model's Performance</h2>
+
+        <div class="results-shell">
+          <div class="results-topline">
+            CALIBRA improves error, grounding, and consistency while remaining practical under routed deployment.
+          </div>
+
+          <div class="results-tabs">
+            <button class="results-tab-btn is-active" onclick="showResultsTab(event, 'combined-tab')">Combined</button>
+            <button class="results-tab-btn" onclick="showResultsTab(event, 'quality-tab')">Quality</button>
+            <button class="results-tab-btn" onclick="showResultsTab(event, 'efficiency-tab')">Efficiency</button>
+          </div>
+
+          <div id="combined-tab" class="results-panel is-active">
+            <div class="results-metric-grid">
+              <div class="results-stat">
+                <div class="value">3.42</div>
+                <div class="label">MAE</div>
+                <div class="sub">Gemini-2.5-Flash + CALIBRA</div>
+              </div>
+              <div class="results-stat">
+                <div class="value">34.4%</div>
+                <div class="label">Reduction</div>
+                <div class="sub">vs zero-shot prompting</div>
+              </div>
+              <div class="results-stat">
+                <div class="value">31.0%</div>
+                <div class="label">Reduction</div>
+                <div class="sub">GPT-4o vs zero-shot</div>
+              </div>
+              <div class="results-stat">
+                <div class="value">93%</div>
+                <div class="label">Coverage</div>
+                <div class="sub">routed mode</div>
+              </div>
+            </div>
+
+            <div class="table-card">
+              <div class="table-head">
+                <h3>Main benchmark results</h3>
+                <span class="table-chip">lower is better</span>
+              </div>
+              <div class="table-wrap">
+                <table class="results-table">
+                  <thead>
+                    <tr>
+                      <th>Method</th>
+                      <th>MAE ↓</th>
+                      <th>RMSE ↓</th>
+                      <th>Bias ↓</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="method-cell">CALIBRA (Gemini-2.5-Flash)</td>
+                      <td class="best">3.42</td>
+                      <td class="best">4.88</td>
+                      <td class="best">0.29</td>
+                    </tr>
+                    <tr>
+                      <td class="method-cell">CALIBRA (GPT-4o)</td>
+                      <td>3.78</td>
+                      <td>5.26</td>
+                      <td>0.34</td>
+                    </tr>
+                    <tr>
+                      <td class="method-cell">CALIBRA (Qwen3-VL-8B)</td>
+                      <td>4.35</td>
+                      <td>5.92</td>
+                      <td>0.41</td>
+                    </tr>
+                    <tr>
+                      <td class="method-cell">CALIBRA (DeepSeek-R1-7B)</td>
+                      <td>4.58</td>
+                      <td>6.15</td>
+                      <td>0.45</td>
+                    </tr>
+                    <tr>
+                      <td class="method-cell">CALIBRA (InternVL3-8B)</td>
+                      <td>4.71</td>
+                      <td>6.28</td>
+                      <td>0.47</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div id="quality-tab" class="results-panel">
+            <div class="results-metric-grid">
+              <div class="results-stat">
+                <div class="value">0.62</div>
+                <div class="label">RG</div>
+                <div class="sub">response grounding</div>
+              </div>
+              <div class="results-stat">
+                <div class="value">0.79</div>
+                <div class="label">CRA</div>
+                <div class="sub">critic agreement</div>
+              </div>
+              <div class="results-stat">
+                <div class="value">0.90</div>
+                <div class="label">CS</div>
+                <div class="sub">consistency score</div>
+              </div>
+              <div class="results-stat">
+                <div class="value">0.82</div>
+                <div class="label">EAR</div>
+                <div class="sub">evidence alignment</div>
+              </div>
+            </div>
+
+            <div class="table-card">
+              <div class="table-head">
+                <h3>Judge-based output quality</h3>
+                <span class="table-chip">higher is better</span>
+              </div>
+              <div class="table-wrap">
+                <table class="results-table">
+                  <thead>
+                    <tr>
+                      <th>Model / Setting</th>
+                      <th>Grounding ↑</th>
+                      <th>Consistency ↑</th>
+                      <th>Rationale ↑</th>
+                      <th>Confidence ↑</th>
+                      <th>Plausibility ↑</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="method-cell">GPT-4o (CoT)</td>
+                      <td>7.6</td>
+                      <td>7.4</td>
+                      <td>7.3</td>
+                      <td>7.0</td>
+                      <td>7.5</td>
+                    </tr>
+                    <tr>
+                      <td class="method-cell">GPT-4o (CALIBRA)</td>
+                      <td>8.6</td>
+                      <td>8.4</td>
+                      <td>8.2</td>
+                      <td>8.1</td>
+                      <td>8.5</td>
+                    </tr>
+                    <tr>
+                      <td class="method-cell">Qwen3-VL-8B (CoT)</td>
+                      <td>7.1</td>
+                      <td>6.9</td>
+                      <td>6.8</td>
+                      <td>6.7</td>
+                      <td>7.0</td>
+                    </tr>
+                    <tr>
+                      <td class="method-cell">Qwen3-VL-8B (CALIBRA)</td>
+                      <td>8.0</td>
+                      <td>7.8</td>
+                      <td>7.6</td>
+                      <td>7.5</td>
+                      <td>7.9</td>
+                    </tr>
+                    <tr>
+                      <td class="method-cell">Gemini-2.5-Flash (CALIBRA)</td>
+                      <td class="best">8.9</td>
+                      <td class="best">8.7</td>
+                      <td class="best">8.5</td>
+                      <td class="best">8.6</td>
+                      <td class="best">8.8</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div id="efficiency-tab" class="results-panel">
+            <div class="results-metric-grid">
+              <div class="results-stat">
+                <div class="value">4.1s</div>
+                <div class="label">Avg. Latency</div>
+                <div class="sub">routed mode</div>
+              </div>
+              <div class="results-stat">
+                <div class="value">8.7s</div>
+                <div class="label">P95 Latency</div>
+                <div class="sub">routed mode</div>
+              </div>
+              <div class="results-stat">
+                <div class="value">1.6 GB</div>
+                <div class="label">Peak RAM</div>
+                <div class="sub">routed mode</div>
+              </div>
+              <div class="results-stat">
+                <div class="value">93%</div>
+                <div class="label">Coverage</div>
+                <div class="sub">kept predictions</div>
+              </div>
+            </div>
+
+            <div class="table-card">
+              <div class="table-head">
+                <h3>Deployment efficiency</h3>
+                <span class="table-chip">latency vs coverage</span>
+              </div>
+              <div class="table-wrap">
+                <table class="results-table">
+                  <thead>
+                    <tr>
+                      <th>System / Mode</th>
+                      <th>Avg. Latency ↓ (s)</th>
+                      <th>P95 Latency ↓ (s)</th>
+                      <th>Peak RAM ↓ (GB)</th>
+                      <th>Coverage ↑ (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="method-cell">Deterministic (FFT+Peak)</td>
+                      <td class="best">0.03</td>
+                      <td class="best">0.05</td>
+                      <td class="best">0.35</td>
+                      <td class="best">100</td>
+                    </tr>
+                    <tr>
+                      <td class="method-cell">Single-agent (CoT)</td>
+                      <td>2.4</td>
+                      <td>5.1</td>
+                      <td>1.1</td>
+                      <td>98</td>
+                    </tr>
+                    <tr>
+                      <td class="method-cell">CALIBRA (Routed mix)</td>
+                      <td>4.1</td>
+                      <td>8.7</td>
+                      <td>1.6</td>
+                      <td>93</td>
+                    </tr>
+                    <tr>
+                      <td class="method-cell">CALIBRA (Strict pass@3)</td>
+                      <td>7.8</td>
+                      <td>15.6</td>
+                      <td>1.9</td>
+                      <td>91</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="section-figure" style="margin-top:0;">
+          <img src="static/images/figure 3.png" alt="Figure 3 Benchmark plot" onerror="this.onerror=null; this.src='static/images/figure3.png';">
+        </div>
+        <p class="figure-caption">
+          Segment-level MAE for prompting baselines and CALIBRA across backbones.
+        </p>
+      </div>
+    </section>
+
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <h2 class="title is-3 has-text-centered title-with-line">Qualitative Results</h2>
+
+          <div class="qualitative-wrap">
+            <div class="section-figure" style="margin-top:0;">
+              <img src="static/images/figure 4.png" alt="Figure 4" onerror="this.onerror=null; this.src='static/images/figure4.png';">
+            </div>
+            <p class="figure-caption">
+              A representative challenging segment where CALIBRA resolves the final prediction through routing, evidence verification, and calibrated arbitration.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered section-title-tight title-with-line">Ablation</h2>
+        <p class="compact-p" style="text-align:center;">The main gains come from routing, critic checks, repair, and calibrated abstention.</p>
+
+        <div class="ablation-figure-wrap">
+          <div class="section-figure" style="margin-top:0;">
+            <img src="static/images/figure 5.png" alt="Figure 5 Ablation" onerror="this.onerror=null; this.src='static/images/figure5.png';">
+          </div>
+          <p class="figure-caption">
+            Component ablation of CALIBRA on the best-performing configuration.
+          </p>
+        </div>
+
+        <div class="ablation-metric-row">
+          <div class="ablation-mini-card">
+            <div class="value">3.42</div>
+            <div class="label">Full System MAE</div>
+            <div class="sub">best configuration</div>
+          </div>
+          <div class="ablation-mini-card">
+            <div class="value">3.94</div>
+            <div class="label">w/o Critic</div>
+            <div class="sub">largest drop</div>
+          </div>
+          <div class="ablation-mini-card">
+            <div class="value">3.82</div>
+            <div class="label">w/o Repair</div>
+            <div class="sub">higher error</div>
+          </div>
+          <div class="ablation-mini-card">
+            <div class="value">3.66</div>
+            <div class="label">w/o Routing</div>
+            <div class="sub">less efficient selection</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <div class="bibtex-header">
+          <h2 class="title">BibTeX</h2>
+          <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+            <i class="fas fa-copy"></i>
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+<pre id="bibtex-code"><code>@InProceedings{Sakib_2026_CVPR,
+    author    = {Sakib, Shadman and Shinde, Gaurav and Roy, Nirmalya},
+    title     = {CALIBRA: Calibration-Aware Multi-Agent Verification for Contactless Physiological Monitoring},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)},
+    year      = {2026}
+}</code></pre>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+              <p>
+                This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+</body>
+</html>
