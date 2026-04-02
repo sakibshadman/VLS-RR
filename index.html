@@ -63,6 +63,8 @@
       --accept-bg: #eef2ff;
       --accept-border: #c7d2fe;
       --accept-pill: #3730a3;
+      --explain-bg: #eff6ff;
+      --explain-border: #2563eb;
       --soft-bg: #f8fbff;
     }
 
@@ -190,6 +192,10 @@
       line-height: 1.55;
     }
 
+    .section-title-tight {
+      margin-bottom: 0.45rem !important;
+    }
+
     .title-with-line {
       position: relative;
       margin-bottom: 1.15rem !important;
@@ -256,9 +262,16 @@
       color: #000 !important;
     }
 
-    .abstract-text p {
+    .explain-block {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 1.2rem 1.35rem;
+      border-left: 5px solid var(--explain-border);
+      background: var(--explain-bg);
+      color: #111827;
+      border-radius: 14px;
+      line-height: 1.9;
       font-size: 1.03rem;
-      line-height: 1.8;
     }
 
     .info-card {
@@ -482,14 +495,6 @@
       margin-bottom: 0.6rem;
     }
 
-    .figure-medium img {
-      max-width: 860px;
-    }
-
-    .figure-small img {
-      max-width: 700px;
-    }
-
     .bibtex-header {
       display: flex;
       align-items: center;
@@ -566,6 +571,7 @@
       }
 
       .results-topline,
+      .explain-block,
       .qual-box {
         font-size: 1rem;
         padding: 1rem;
@@ -711,21 +717,6 @@
       </div>
     </section>
 
-    <section class="section hero is-light">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3 has-text-centered title-with-line">Abstract</h2>
-            <div class="content has-text-justified abstract-text">
-              <p>
-                Contactless respiratory monitoring from video is a promising alternative to wearable sensors but remains sensitive to motion artifacts and variations in viewpoint and lighting, which degrade the reliability of respiratory rate (RR) estimates. Traditional signal processing methods often struggle to separate physiological motion from visual artifacts, while large multimodal models (LMMs) can reason about these artifacts but are often too computationally demanding for privacy-sensitive or embedded deployments. This work aims to improve robustness and deployability by explicitly decoupling visual perception from downstream reasoning. We propose <strong>VLS-RR</strong> (Visual–Language–SLM Respiratory Rate) auditor, a three-stage framework where video segments are converted into fused motion signals and summary plots. A vision–language model (VLM) then produces a textual description of rhythm, breath count, and artifacts. Finally, small language models (SLMs) perform chain-of-thought (CoT) auditing over this evidence and the signal-derived RR candidates. We evaluate VLS-RR on a 50-video belt-synchronized dataset spanning diverse breathing patterns, viewpoints, and lighting conditions. Compared with signal-only baselines, VLS-RR reduces segment-level MAE by ≈ 30% and improves R² from 0.85 to 0.92. It also outperforms numeric-only SLM baselines with an additional ≈ 25% MAE reduction. Finally, on an embedded edge device, compact SLM auditors run with 0.82–1.71 s latency per 6 s window, indicating that decoupling perception and reasoning enables accurate, resource-efficient RR estimation from video.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="hero teaser">
       <div class="container is-max-widescreen">
         <div class="hero-body">
@@ -733,8 +724,31 @@
             <img src="static/images/figure1.png" alt="Figure 1 overview" onerror="this.onerror=null; this.src='static/images/figure 1.png';">
           </div>
           <p class="figure-caption">
-            <strong>Figure 1.</strong> Overview of VLS-RR. The framework generates respiratory artifacts from contactless video, summarizes them with a vision-language model, and audits candidate RR estimates using a small language model with confidence and reliability labels.
+            <strong>Figure 1.</strong> Overview of VLS-RR. The framework first extracts fused respiratory motion signals and visual artifacts from contactless video, then uses a vision-language model to summarize these artifacts into compact evidence, and finally uses a small language model to audit candidate respiratory-rate estimates with confidence and reliability labels.
           </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3 has-text-centered title-with-line">Abstract</h2>
+            <div class="content has-text-justified abstract-text">
+              <p>
+                Contactless respiratory monitoring from video is a promising alternative to wearable sensors but remains sensitive to motion artifacts and variations in viewpoint and lighting, which degrade the reliability of respiratory rate (RR) estimates. Traditional signal processing methods often struggle to separate physiological motion from visual artifacts, while large multimodal models can reason about these artifacts but are often too computationally demanding for privacy-sensitive or embedded deployments. We propose <strong>VLS-RR</strong> (Visual–Language–SLM Respiratory Rate) auditor, a three-stage framework where video segments are converted into fused motion signals and summary plots, a vision-language model produces a textual description of rhythm, breath count, and artifacts, and small language models perform auditing over this evidence and signal-derived RR candidates. Across a 50-video belt-synchronized dataset, VLS-RR improves segment-level accuracy over signal-only and numeric-only baselines while remaining practical for edge deployment.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="explain-block">
+          <strong><em>VLS-RR</em></strong> is a <strong>three-stage framework</strong> for <strong>contactless respiratory-rate estimation</strong> that <strong>decouples visual perception from downstream reasoning</strong>, enabling more <strong>robust</strong>, <strong>interpretable</strong>, and <strong>edge-deployable</strong> prediction from short video segments.
         </div>
       </div>
     </section>
@@ -775,38 +789,8 @@
       <div class="hero-body">
         <div class="container is-max-desktop">
           <h2 class="title is-3 has-text-centered title-with-line">Method</h2>
-
-          <div class="columns is-variable is-5">
-            <div class="column">
-              <div class="info-card">
-                <h3 class="title is-5">Stage 1: Signal and artifact generation</h3>
-                <p>
-                  Short chest-video segments are converted into fused respiratory motion signals together with diagnostic artifacts such as waveform plots, optical-flow summaries, and signal-derived RR candidates.
-                </p>
-              </div>
-            </div>
-
-            <div class="column">
-              <div class="info-card">
-                <h3 class="title is-5">Stage 2: Visual evidence extraction</h3>
-                <p>
-                  A vision-language model reads the generated plots and summarizes rhythm, breath count, motion spikes, and agreement or disagreement between candidate RR estimates.
-                </p>
-              </div>
-            </div>
-
-            <div class="column">
-              <div class="info-card">
-                <h3 class="title is-5">Stage 3: SLM auditing</h3>
-                <p>
-                  A small language model audits the visual evidence together with the numerical candidates and outputs a validated respiratory-rate estimate, confidence level, and reliability label.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <p class="compact-p" style="margin-top: 1rem;">
-            Instead of repeating the full pipeline figure, this section highlights the role of each stage: generate interpretable artifacts, summarize them as textual evidence, and use lightweight reasoning to produce a more trustworthy final estimate.
+          <p class="compact-p method-text">
+            VLS-RR takes short contactless chest-video segments and processes them in three stages. First, it extracts a fused respiratory motion signal, signal-derived RR candidates, and visual artifacts such as waveform plots, optical-flow summaries, and candidate-comparison charts. Second, a vision-language model converts these artifacts into compact textual evidence describing rhythmicity, approximate breath count, artifact severity, and agreement between estimates. Third, a small language model audits this visual evidence together with the signal-derived candidates and outputs a validated respiratory-rate estimate along with confidence and reliability labels.
           </p>
         </div>
       </div>
@@ -1025,7 +1009,7 @@
 
         <div class="stacked-figure-block">
           <div class="stacked-figure-item">
-            <div class="section-figure figure-medium" style="margin-top:0;">
+            <div class="section-figure" style="margin-top:0;">
               <img src="static/images/figure3.png" alt="Figure 3 on-device performance" onerror="this.onerror=null; this.src='static/images/figure 3.png';">
             </div>
             <p class="figure-caption">
@@ -1034,7 +1018,7 @@
           </div>
 
           <div class="stacked-figure-item">
-            <div class="section-figure figure-small" style="margin-top:0;">
+            <div class="section-figure" style="margin-top:0;">
               <img src="static/images/figure4.png" alt="Figure 4 trade-offs" onerror="this.onerror=null; this.src='static/images/figure 4.png';">
             </div>
             <p class="figure-caption">
