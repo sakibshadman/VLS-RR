@@ -63,8 +63,6 @@
       --accept-bg: #eef2ff;
       --accept-border: #c7d2fe;
       --accept-pill: #3730a3;
-      --explain-bg: #eff6ff;
-      --explain-border: #2563eb;
       --soft-bg: #f8fbff;
     }
 
@@ -192,10 +190,6 @@
       line-height: 1.55;
     }
 
-    .section-title-tight {
-      margin-bottom: 0.45rem !important;
-    }
-
     .title-with-line {
       position: relative;
       margin-bottom: 1.15rem !important;
@@ -262,16 +256,9 @@
       color: #000 !important;
     }
 
-    .explain-block {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 1.2rem 1.35rem;
-      border-left: 5px solid var(--explain-border);
-      background: var(--explain-bg);
-      color: #111827;
-      border-radius: 14px;
-      line-height: 1.9;
+    .abstract-text p {
       font-size: 1.03rem;
+      line-height: 1.8;
     }
 
     .info-card {
@@ -495,6 +482,18 @@
       margin-bottom: 0.6rem;
     }
 
+    .figure-medium img {
+      max-width: 860px;
+    }
+
+    .figure-small img {
+      max-width: 560px;
+    }
+
+    .dataset-figure img {
+      max-width: 820px;
+    }
+
     .bibtex-header {
       display: flex;
       align-items: center;
@@ -571,7 +570,6 @@
       }
 
       .results-topline,
-      .explain-block,
       .qual-box {
         font-size: 1rem;
         padding: 1rem;
@@ -588,6 +586,12 @@
 
       .compact-p.method-text {
         text-align: left;
+      }
+
+      .figure-small img,
+      .dataset-figure img,
+      .figure-medium img {
+        max-width: 100%;
       }
     }
   </style>
@@ -690,6 +694,21 @@
                 </a>
               </div>
 
+              <section class="section hero is-light" style="margin-top: 1.5rem; border-radius: 18px;">
+                <div class="container is-max-desktop">
+                  <div class="columns is-centered has-text-centered">
+                    <div class="column is-four-fifths">
+                      <h2 class="title is-3 has-text-centered title-with-line">Abstract</h2>
+                      <div class="content has-text-justified abstract-text">
+                        <p>
+                          Contactless respiratory monitoring from video is a promising alternative to wearable sensors but remains sensitive to motion artifacts and variations in viewpoint and lighting, which degrade the reliability of respiratory rate (RR) estimates. Traditional signal processing methods often struggle to separate physiological motion from visual artifacts, while large multimodal models (LMMs) can reason about these artifacts but are often too computationally demanding for privacy-sensitive or embedded deployments. This work aims to improve robustness and deployability by explicitly decoupling visual perception from downstream reasoning. We propose <strong>VLS-RR</strong> (Visual–Language–SLM Respiratory Rate) auditor, a three-stage framework where video segments are converted into fused motion signals and summary plots. A vision–language model (VLM) then produces a textual description of rhythm, breath count, and artifacts. Finally, small language models (SLMs) perform chain-of-thought (CoT) auditing over this evidence and the signal-derived RR candidates. We evaluate VLS-RR on a 50-video belt-synchronized dataset spanning diverse breathing patterns, viewpoints, and lighting conditions. Compared with signal-only baselines, VLS-RR reduces segment-level MAE by ≈ 30% and improves R² from 0.85 to 0.92. It also outperforms numeric-only SLM baselines with an additional ≈ 25% MAE reduction. Finally, on an embedded edge device, compact SLM auditors run with 0.82–1.71 s latency per 6 s window, indicating that decoupling perception and reasoning enables accurate, resource-efficient RR estimation from video.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
               <div class="columns is-centered spacer-top">
                 <div class="column is-4">
                   <div class="metric-card">
@@ -724,31 +743,8 @@
             <img src="static/images/figure1.png" alt="Figure 1 overview" onerror="this.onerror=null; this.src='static/images/figure 1.png';">
           </div>
           <p class="figure-caption">
-            <strong>Figure 1.</strong> Overview of VLS-RR. The framework first extracts fused respiratory motion signals and visual artifacts from contactless video, then uses a vision-language model to summarize these artifacts into compact evidence, and finally uses a small language model to audit candidate respiratory-rate estimates with confidence and reliability labels.
+            <strong>Figure 1.</strong> Overview of VLS-RR. The framework generates respiratory artifacts from contactless video, summarizes them with a vision-language model, and audits candidate RR estimates using a small language model with confidence and reliability labels.
           </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section hero is-light">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3 has-text-centered title-with-line">Abstract</h2>
-            <div class="content has-text-justified abstract-text">
-              <p>
-                Contactless respiratory monitoring from video is a promising alternative to wearable sensors but remains sensitive to motion artifacts and variations in viewpoint and lighting, which degrade the reliability of respiratory rate (RR) estimates. Traditional signal processing methods often struggle to separate physiological motion from visual artifacts, while large multimodal models can reason about these artifacts but are often too computationally demanding for privacy-sensitive or embedded deployments. We propose <strong>VLS-RR</strong> (Visual–Language–SLM Respiratory Rate) auditor, a three-stage framework where video segments are converted into fused motion signals and summary plots, a vision-language model produces a textual description of rhythm, breath count, and artifacts, and small language models perform auditing over this evidence and signal-derived RR candidates. Across a 50-video belt-synchronized dataset, VLS-RR improves segment-level accuracy over signal-only and numeric-only baselines while remaining practical for edge deployment.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container is-max-desktop">
-        <div class="explain-block">
-          <strong><em>VLS-RR</em></strong> is a <strong>three-stage framework</strong> for <strong>contactless respiratory-rate estimation</strong> that <strong>decouples visual perception from downstream reasoning</strong>, enabling more <strong>robust</strong>, <strong>interpretable</strong>, and <strong>edge-deployable</strong> prediction from short video segments.
         </div>
       </div>
     </section>
@@ -789,9 +785,35 @@
       <div class="hero-body">
         <div class="container is-max-desktop">
           <h2 class="title is-3 has-text-centered title-with-line">Method</h2>
-          <p class="compact-p method-text">
-            VLS-RR takes short contactless chest-video segments and processes them in three stages. First, it extracts a fused respiratory motion signal, signal-derived RR candidates, and visual artifacts such as waveform plots, optical-flow summaries, and candidate-comparison charts. Second, a vision-language model converts these artifacts into compact textual evidence describing rhythmicity, approximate breath count, artifact severity, and agreement between estimates. Third, a small language model audits this visual evidence together with the signal-derived candidates and outputs a validated respiratory-rate estimate along with confidence and reliability labels.
-          </p>
+
+          <div class="columns is-variable is-5">
+            <div class="column">
+              <div class="info-card">
+                <h3 class="title is-5">Stage 1: Signal and artifact generation</h3>
+                <p>
+                  Short chest-video segments are converted into fused respiratory motion signals together with diagnostic artifacts such as waveform plots, optical-flow summaries, and signal-derived RR candidates.
+                </p>
+              </div>
+            </div>
+
+            <div class="column">
+              <div class="info-card">
+                <h3 class="title is-5">Stage 2: Visual evidence extraction</h3>
+                <p>
+                  A vision-language model reads the generated plots and summarizes rhythm, breath count, motion spikes, and agreement or disagreement between candidate RR estimates.
+                </p>
+              </div>
+            </div>
+
+            <div class="column">
+              <div class="info-card">
+                <h3 class="title is-5">Stage 3: SLM auditing</h3>
+                <p>
+                  A small language model audits the visual evidence together with the numerical candidates and outputs a validated respiratory-rate estimate, confidence level, and reliability label.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -802,7 +824,7 @@
         <p class="compact-p method-text">
           We evaluate the framework on an in-house belt-synchronized dataset consisting of 50 RGB videos, each roughly 2.5–3.5 minutes long at 1920×1080 and 30 fps. The recordings cover multiple breathing patterns and viewpoints, including frontal, oblique, overhead, and supine settings. Ground-truth respiratory signals are obtained using a Vernier respiration belt synchronized with the video stream.
         </p>
-        <div class="section-figure">
+        <div class="section-figure dataset-figure">
           <img src="static/images/figure2.png" alt="Figure 2 dataset collection" onerror="this.onerror=null; this.src='static/images/figure 2.png';">
         </div>
         <p class="figure-caption">
@@ -963,31 +985,22 @@
                   <tbody>
                     <tr><td class="method-cell">MobileLLM-1B</td><td>Zero-shot</td><td>7.1</td><td>9.0</td><td>0.10</td><td>0.89</td><td>79 / 49</td></tr>
                     <tr><td class="method-cell">MobileLLM-1B</td><td>Few-shot</td><td>6.9</td><td>8.8</td><td>-0.12</td><td>0.90</td><td>82 / 55</td></tr>
-
                     <tr><td class="method-cell">TinyLlama-1.1B</td><td>Zero-shot</td><td>7.0</td><td>8.9</td><td>0.02</td><td>0.89</td><td>81 / 51</td></tr>
                     <tr><td class="method-cell">TinyLlama-1.1B</td><td>Few-shot</td><td>6.2</td><td>8.0</td><td>-0.11</td><td>0.91</td><td>83 / 57</td></tr>
-
                     <tr><td class="method-cell">Qwen2-1.5B</td><td>Zero-shot</td><td>6.3</td><td>8.1</td><td>-0.21</td><td>0.90</td><td>82 / 55</td></tr>
                     <tr><td class="method-cell">Qwen2-1.5B</td><td>Few-shot</td><td>5.9</td><td>7.7</td><td>-0.08</td><td>0.91</td><td>85 / 60</td></tr>
-
                     <tr><td class="method-cell">SmolLM2-1.7B</td><td>Zero-shot</td><td>6.9</td><td>8.8</td><td>0.14</td><td>0.90</td><td>83 / 56</td></tr>
                     <tr><td class="method-cell">SmolLM2-1.7B</td><td>Few-shot</td><td>5.8</td><td>7.6</td><td>-0.09</td><td>0.91</td><td>86 / 61</td></tr>
-
                     <tr><td class="method-cell">Llama-3.2-1B</td><td>Zero-shot</td><td>6.4</td><td>8.2</td><td>0.03</td><td>0.90</td><td>82 / 54</td></tr>
                     <tr><td class="method-cell">Llama-3.2-1B</td><td>Few-shot</td><td>6.1</td><td>7.9</td><td>-0.10</td><td>0.91</td><td>84 / 59</td></tr>
-
                     <tr><td class="method-cell">Llama-3.2-3B</td><td>Zero-shot</td><td>5.8</td><td>7.5</td><td>-0.24</td><td>0.91</td><td>84 / 58</td></tr>
                     <tr><td class="method-cell">Llama-3.2-3B</td><td>Few-shot</td><td>5.3</td><td>6.9</td><td>0.11</td><td>0.92</td><td>87 / 63</td></tr>
-
                     <tr><td class="method-cell">Phi-3.5-mini</td><td>Zero-shot</td><td>7.3</td><td>9.2</td><td>-0.12</td><td>0.89</td><td>84 / 59</td></tr>
                     <tr><td class="method-cell">Phi-3.5-mini</td><td>Few-shot</td><td>6.4</td><td>8.3</td><td>0.02</td><td>0.91</td><td>86 / 65</td></tr>
-
                     <tr><td class="method-cell">Phi-4-mini</td><td>Zero-shot</td><td>6.5</td><td>8.2</td><td>0.01</td><td>0.90</td><td>84 / 60</td></tr>
                     <tr><td class="method-cell">Phi-4-mini</td><td>Few-shot</td><td>5.9</td><td>7.6</td><td>0.10</td><td>0.92</td><td>86 / 64</td></tr>
-
                     <tr><td class="method-cell">SmolLM3-3B</td><td>Zero-shot</td><td>6.7</td><td>8.4</td><td>-0.13</td><td>0.90</td><td>83 / 59</td></tr>
                     <tr><td class="method-cell">SmolLM3-3B</td><td>Few-shot</td><td>5.8</td><td>7.5</td><td>0.03</td><td>0.91</td><td>86 / 65</td></tr>
-
                     <tr><td class="method-cell">medgemma-4B-it</td><td>Zero-shot</td><td>7.6</td><td>9.6</td><td>-0.11</td><td>0.88</td><td>84 / 61</td></tr>
                     <tr><td class="method-cell">medgemma-4B-it</td><td>Few-shot</td><td>6.3</td><td>8.2</td><td>0.04</td><td>0.91</td><td>87 / 66</td></tr>
                   </tbody>
@@ -1009,7 +1022,7 @@
 
         <div class="stacked-figure-block">
           <div class="stacked-figure-item">
-            <div class="section-figure" style="margin-top:0;">
+            <div class="section-figure figure-medium" style="margin-top:0;">
               <img src="static/images/figure3.png" alt="Figure 3 on-device performance" onerror="this.onerror=null; this.src='static/images/figure 3.png';">
             </div>
             <p class="figure-caption">
@@ -1018,7 +1031,7 @@
           </div>
 
           <div class="stacked-figure-item">
-            <div class="section-figure" style="margin-top:0;">
+            <div class="section-figure figure-small" style="margin-top:0;">
               <img src="static/images/figure4.png" alt="Figure 4 trade-offs" onerror="this.onerror=null; this.src='static/images/figure 4.png';">
             </div>
             <p class="figure-caption">
